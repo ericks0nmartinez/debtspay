@@ -1,0 +1,48 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0 auto;
+    width: 80%;
+    height: 100vh;
+    max-width: 1000px;
+    box-sizing: border-box;
+}
+
+#page-home {
+    /*background: url("../assets/principal.jpeg") no-repeat;*/
+    margin-top: 2vh;
+    height: 40vh;
+    background-position: 60vh bottom;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h3 {
+    color: #36E50A;
+}
+
+header a {
+    text-decoration: none;
+    color: red;
+    border: rgba(255, 0, 0, 0.678) solid 0.5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+p {
+    font-weight: 100;
+}
+
+button {
+    background-color: #36E50A;
+    color: white;
+    border: none;
+    padding: 10px 10px 10px 25px;
+    border-radius: 5px;
+}

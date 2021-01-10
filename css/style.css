@@ -1,0 +1,73 @@
+body {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label, input {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+button, select {
+    background: lightblue;
+    color: white;
+    font-weight: bolder;
+    margin: 0 auto;
+    margin-bottom: 5px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+tr, table, td, th {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background: fixed;
+}
+.contaPositiva{
+    border: rgb(8, 219, 8) solid 1px;
+}
+.contaNegativa{
+    border: red solid 1px;
+}
+
+.esconde {
+    display: none;
+}
+
+#tdivida, #vdivida, #vrenda {
+    color: red;
+    font-size: 80%;
+}
+
+.um,.dois, .treis, .quatro, .quinto{
+    display: none;
+}
+
+
+img {
+    width: 16px;
+    height: 16px;
+    transform: rotate(-90deg);
+}
+
+.mostraPassoDois{
+    margin: 5px;
+    padding: 5px;
+    border: lightgreen solid 2px;
+    width: 25px;
+    margin-right: 10px;
+    margin-left: 90%;
+}
+
+#pagarConta {
+
+}

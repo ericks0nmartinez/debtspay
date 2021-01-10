@@ -1,0 +1,98 @@
+<html>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../css/style.css">
+
+    </head>
+
+    <body>
+        <header>
+            <h1>Organizando as coisas por aqui</h1>
+        </header>
+        <form method="POST">
+            <fieldset class="um">
+                <h2>Para começarmos precisamos saber seus principais ganhos</h2>
+                <label>Renda Mensal<input type="tel" name="rendaMensal"></label>
+                <div id="vrenda"></div>
+
+                <div class="mostraPassoDois" onclick="proximoPasso()"><img src="../assets/arrow-left.svg" alt="Proximo passo se campo Renda preenchido"></div>
+            </fieldset>
+            <fieldset class="dois">
+                <h2>Muito Bom, agora precisamos identificar suas principais dividas</h2>
+                <label>Descrição da Divida
+                    <input name="tituloDivida"></label>
+                <div id="tdivida"></div>
+                <label>Valor Total da Divida
+                    <input name="valorDivida" type="tel">
+                    <div id="vdivida"></div>
+                </label>
+                <fieldset id="pagarConta" class="">
+                    <h3>Conta será paga parcelada?</h3>
+                    <label for="parceladoSim">
+                        <input type="RADIO" onclick="marcaEsconde()" id="parceladoSim" name="contaparcelado" value="true">Sim
+                    </label>
+                    <label for="parceladoNao">
+                        <input type="RADIO" onclick="marcaCheckAVista()" id="parceladoNao" name="contaparcelado" value="false">Não
+                    </label>
+                    <h3>Conta será paga toda esse mês?</h3>
+                    <label for="aVistaSim">
+                        <input type="RADIO" id="aVistaSim" name="contaMes" value="true">Sim
+                        </label>
+                    <label for="aVistaNao">
+                        <input type="RADIO" id="aVistaNao" name="contaMes" value="false">Não
+                    </label>
+                </fieldset>
+                <div class="mostraPassoDois" onclick="proximoPassoDois()"><img src="../assets/arrow-left.svg" alt="Proximos Passo "></div>
+            </fieldset>
+            <fieldset id="porcentPag" class="esconde">
+                <label>Porcentagem paga da divida
+                    <select onclick="marcaCheckParcelado()" name="porcentagemPag">
+                        <option value="100">1 vez</option>
+                        <option value="50">2 vez</option>
+                        <option value="33.33">3 vez</option>
+                        <option value="25">4 vezes</option>
+                        <option value="20">5 vezes</option>
+                        <option value="14.28">7 vezes</option>
+                        <option value="10">10 vezes</option>
+                        <option value="8.33">12 vezes</option>
+                        <option value="5">20 vezes</option>
+            
+                    </select>
+                </label>
+            </fieldset>
+            <button class="treis" type="submit">Adicionar</button>
+        </form>
+        <div id="rendaMensal1" class="quatro">
+            Renda mensal:<div id="saldo"></div>
+        </div>
+        <section id="mostrarDivida" class="quinto">
+            <h2>Todas dividas</h2>
+            <table id="tabelaDividas">
+                <thead>
+                    <th>Descrição da Divida e valor</th>
+                    <th>Valor restante</th>
+                    <th>Quantidade de parcelas</th>
+                    <th>Valor Pago divida</th>
+                    <th>Saldo restante</th>
+                </thead>
+                <tbody id="tabela"></tbody>
+                <tfoot>
+                    <td>Total</td>
+                    <td id="total"></td>
+                    <td id="meses"></td>
+                    <td id="valorPago"></td>
+                    <td id="saldoRestante"></td>
+                </tfoot>
+            </table>
+            <button id="exportar" type="submit" onclick="abrirPagina()">Exportar</button>
+        </section>
+        <footer>
+            <a href="../index.html">Voltar Home</a>
+        </footer>
+    </body>
+
+    <script src="../js/index.js"></script>
+
+</html>
