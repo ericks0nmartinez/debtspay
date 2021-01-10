@@ -102,18 +102,12 @@ function qtdParcelas() {
     var valor = obterInfoForm().valor;
     var porcentagem = calculaPorcentagem();
 
-    if (porcentagem == valor) {
+    if (porcentagem == valor && document.querySelector("#aVistaSim").checked == true) {
         valor = "a vista."
+    } else if(document.querySelector("#aVistaSim").checked == true) {
+        valor = (valor / calculaPorcentagem()) - 1;
     } else {
-        valor = valor / calculaPorcentagem();
-        valor = valor - 1;
-        var tempo = document.querySelector("#meses").textContent;
-        if (valor > tempo || tempo == "") {
-            var data = new Date();
-            var mes = data.getMonth() + valor;
-
-        }
-        document.querySelector("#meses").textContent = valor;
+        valor = "Não pagará no mês";
     }
     return valor;
 }
@@ -172,6 +166,9 @@ function validaDados() {
 function calculaPorcentagem() {
     var valor = obterInfoForm().valor;
     var porcentagem = obterInfoForm().porcentagem;
+    if(document.querySelector("#aVistaNao").checked == true) {
+        valor = 0;
+    }
     return valor * (porcentagem / 100);
 }
 
