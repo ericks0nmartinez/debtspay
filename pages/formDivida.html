@@ -14,7 +14,7 @@
         <form method="POST">
             <fieldset class="um">
                 <h2>Para começarmos precisamos saber seus principais ganhos</h2>
-                <label>Renda Mensal<input type="text" pattern="[0-9]{1,5}" placeholder="Digite o valor da Renda" title="Só é permitido numeros" name="rendaMensal"></label>
+                <label>Renda Mensal<input type="text" pattern="[0-9]{1,5}" placeholder="Valor da Renda. ex: 1100.50"" title="Só é permitido numeros" name="rendaMensal"></label>
                 <div id="vrenda"></div>
 
                 <div class="mostraPassoDois" onclick="proximoPasso()"><img src="../assets/arrow-left.svg" alt="Proximo passo se campo Renda preenchido"></div>
@@ -22,10 +22,10 @@
             <fieldset class="dois">
                 <h2>Muito Bom, agora precisamos identificar todas suas principais dividas</h2>
                 <label>Descrição da Divida
-                    <input name="tituloDivida"></label>
+                    <input name="tituloDivida" placeholder="Divite a conta à pagar"></label>
                 <div id="tdivida"></div>
                 <label>Valor Total da Divida
-                    <input name="valorDivida" class="vdivida" type="text" pattern="[0-9]{1,5}" placeholder="Digite o valor da divida" title="Só é permitido numeros">
+                    <input name="valorDivida" class="vdivida" type="text" pattern="[0-9]{1,5}" placeholder="Valor da divida. ex: 1100.50" title="Só é permitido numeros">
                     <div id="vdivida"></div>
                 </label>
                 <fieldset id="pagarConta" class="">

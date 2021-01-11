@@ -23,27 +23,27 @@ adicionarDivida.addEventListener("click", function (event) {
     totalDividas.textContent = valorTotal(obterInfoForm().valor);
     totalMensal.textContent = valorTotalMes(calculaPorcentagem());
     form.reset();
-    form.rendaMensal.value = parseInt(saldo.textContent);
+    form.rendaMensal.value = parseFloat(saldo.textContent);
     adicionarDivida.classList.add("treis");
     escondeOpcao.classList.add("esconde");
 
 });
 function obterInfoForm() {
-
-    return {
-        renda: form.rendaMensal.value,
+        return {
+        renda: form.rendaMensal.value.replace(',','.'),
         titulo: form.tituloDivida.value,
-        valor: form.valorDivida.value,
+        valor: form.valorDivida.value.replace(',','.'),
         marcado: form.contaMes.checked,
         porcentagem: form.porcentagemPag.value
     };
 }
 function proximoPasso() {
+    obterInfoForm().value = parseFloat(document.querySelector("label input").value.replace(',','.'));
     if (obterInfoForm().renda != "") {
         fieldset[1].classList.remove("dois");
         fieldset[0].classList.add("um");
         document.querySelector("#rendaMensal1").classList.remove("quatro");
-        saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
+        saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
     } else {
         if (validaDados() == false) {
             return;
@@ -52,7 +52,7 @@ function proximoPasso() {
 }
 
 function proximoPassoDois() {
-    if (obterInfoForm().titulo.length > 1 && parseInt(document.querySelector(".vdivida").value) > 0) {
+    if (obterInfoForm().titulo.length > 1 && parseFloat(document.querySelector(".vdivida").value) > 0) {
         document.querySelector("#tdivida").textContent = "";
         document.querySelector("#vdivida").textContent = "";
         adicionarDivida.classList.remove("treis");
@@ -70,14 +70,14 @@ if (obterInfoForm().renda.length == 0) {
     fieldset[0].classList.remove("um");
 } else {
     document.querySelector(".quatro").classList.remove("quatro");
-    saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
+    saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
 }
 
 var restanteConta = (obterInfoForm().valor - calculaPorcentagem());
 function crieTr() {
     var tr = document.createElement("tr");
     var descricao = (obterInfoForm().titulo + " " + obterInfoForm().valor);
-    var restanteConta = (obterInfoForm().valor - calculaPorcentagem())
+    var restanteConta = (parseFloat(obterInfoForm().valor) - parseFloat(calculaPorcentagem()))
     tr.appendChild(crieTd(descricao));
     tr.appendChild(crieTd(restanteConta));
     tr.appendChild(crieTd(qtdParcelas()));
@@ -108,12 +108,12 @@ function qtdParcelas() {
 }
 
 function valorTotal(valor) {
-    total = (total + (parseInt(valor) - calculaPorcentagem()));
+    total = (total + (parseFloat(valor) - calculaPorcentagem()));
     return total;
 }
 
 function valorTotalMes(valor) {
-    totelMes = (totelMes + parseInt(valor))
+    totelMes = (totelMes + parseFloat(valor))
     return totelMes;
 }
 
@@ -145,7 +145,7 @@ function validaDados() {
     }
 
     if (saldo.textContent == "") {
-        (renda.length != "") ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
+        (renda.length != "") ? saldo.textContent = parseFloat(obterInfoForm().renda) : saldo.textContent = 0;
     }
 
     if (marcado == 1) {
@@ -167,7 +167,7 @@ function calculaPorcentagem() {
 }
 
 function marcaCheckParcelado() {
-    parseInt(obterInfoForm().porcentagem) != 100 ? document.querySelector("#parceladoSim").checked = true : document.querySelector("#parcelado").checked = false;
+    parseFloat(obterInfoForm().porcentagem) != 100 ? document.querySelector("#parceladoSim").checked = true : document.querySelector("#parcelado").checked = false;
 }
 
 function marcaCheckAVista() {
@@ -181,7 +181,7 @@ function marcaEsconde() {
 
 
 function contasDoMes() {
-    var saldoMes = parseInt(saldo.textContent) - calculaPorcentagem();
+    var saldoMes = parseFloat(saldo.textContent) - calculaPorcentagem();
     return saldo.textContent = saldoMes;
 }
 
@@ -191,7 +191,7 @@ function saldoScore(){
         let tipo = document.querySelectorAll(el);
             tipo.forEach(item => {
             let elemento = item;
-                if(parseInt(saldo.textContent) < 1){
+                if(parseFloat(saldo.textContent) < 1){
                     elemento.classList.add("contaNegativa");
                     elemento.classList.remove("contaPositiva");
                 }else{
@@ -203,7 +203,7 @@ function saldoScore(){
 }
 
 function calculaSaldoRestante(){
-    return document.querySelector("#saldo").textContent = parseInt(saldo.textContent) - calculaPorcentagem();
+    return document.querySelector("#saldo").textContent = parseFloat(saldo.textContent) - calculaPorcentagem();
 }
 
 function abrirPagina() {
