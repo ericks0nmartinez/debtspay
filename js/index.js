@@ -25,6 +25,8 @@ adicionarDivida.addEventListener("click", function (event) {
     form.reset();
     form.rendaMensal.value = parseInt(saldo.textContent);
     adicionarDivida.classList.add("treis");
+    escondeOpcao.classList.add("esconde");
+
 });
 function obterInfoForm() {
 
@@ -39,25 +41,25 @@ function obterInfoForm() {
 function proximoPasso() {
     if (obterInfoForm().renda != "") {
         fieldset[1].classList.remove("dois");
-        fieldset[2].classList.remove("dois");
         fieldset[0].classList.add("um");
         document.querySelector("#rendaMensal1").classList.remove("quatro");
-        if (saldo.textContent == "") {
-            (obterInfoForm().renda.length != "") ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
-        }
+        saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
     } else {
         if (validaDados() == false) {
             return;
         }
     }
-
 }
 
 function proximoPassoDois() {
-    if (obterInfoForm().titulo.length > 1 && obterInfoForm.valor != "") {
-        fieldset[3].classList.remove("treis");
+    if (obterInfoForm().titulo.length > 1 && parseInt(document.querySelector(".vdivida").value) > 0) {
+        document.querySelector("#tdivida").textContent = "";
+        document.querySelector("#vdivida").textContent = "";
         adicionarDivida.classList.remove("treis");
     } else {
+        adicionarDivida.classList.add("treis");
+        document.querySelector("#aVistaSim").checked = false;
+        document.querySelector("#aVistaNao").checked = false;
         if (validaDados() == false) {
             return;
         }
@@ -67,16 +69,9 @@ function proximoPassoDois() {
 if (obterInfoForm().renda.length == 0) {
     fieldset[0].classList.remove("um");
 } else {
-    let passoQuatro = document.querySelector(".quatro");
-    passoQuatro.classList.remove("quatro");
-    if (saldo.textContent == "") {
-        (obterInfoForm().renda.length != "") ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
-    }
-    if (obterInfoForm().titulo.length > 0 && obterInfoForm().valor.length > 0) {
-        fieldset[3].classList.remove("treis");
-    }
+    document.querySelector(".quatro").classList.remove("quatro");
+    saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseInt(obterInfoForm().renda) : saldo.textContent = 0;
 }
-
 
 var restanteConta = (obterInfoForm().valor - calculaPorcentagem());
 function crieTr() {
@@ -127,19 +122,18 @@ function validaDados() {
     var titulo = obterInfoForm().titulo;
     var renda = obterInfoForm().renda;
     var marcado = obterInfoForm().marcado;
-    if (valor.length == 0) {
-        document.querySelector("#vdivida").textContent = "Digite valor Divida"
+        if (valor.length == 0 && document.querySelector("#vdivida").innerHTML == "" || valor == 0){
+            document.querySelector("#vdivida").textContent = "Digite valor Divida";
         valor = false;
     } else {
-        document.querySelector("#vdivida").innerHTML = "";
         valor = true;
     }
 
     if (renda.length == 0 && saldo.textContent == "") {
         document.querySelector("#vrenda").textContent = "Digite valor da renda"
-        valor = false;
+        renda = false;
     } else {
-        valor = true;
+        renda = true;
     }
 
     if (titulo.length == 0) {
@@ -169,7 +163,7 @@ function calculaPorcentagem() {
     if(document.querySelector("#aVistaNao").checked == true) {
         valor = 0;
     }
-    return valor * (porcentagem / 100);
+    return valor / porcentagem;
 }
 
 function marcaCheckParcelado() {
@@ -177,13 +171,11 @@ function marcaCheckParcelado() {
 }
 
 function marcaCheckAVista() {
-    parseInt(obterInfoForm().porcentagem) == 100 ? document.querySelector("#aVistaSim").checked = true : document.querySelector("#aVistaSim").checked = false;
     escondeOpcao.classList.add("esconde");
 }
 
 function marcaEsconde() {
     escondeOpcao.classList.remove("esconde");
-    document.querySelector("#aVistaNao").checked = true;
 }
 
 

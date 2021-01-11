@@ -15,7 +15,6 @@ form label, input {
 
 button, select {
     background: lightblue;
-    color: white;
     font-weight: bolder;
     margin: 0 auto;
     margin-bottom: 5px;
@@ -51,7 +50,6 @@ tr, table, td, th {
 .um,.dois, .treis, .quatro, .quinto{
     display: none;
 }
-
 
 img {
     width: 16px;

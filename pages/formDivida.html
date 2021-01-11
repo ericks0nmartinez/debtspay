@@ -14,18 +14,18 @@
         <form method="POST">
             <fieldset class="um">
                 <h2>Para começarmos precisamos saber seus principais ganhos</h2>
-                <label>Renda Mensal<input type="tel" name="rendaMensal"></label>
+                <label>Renda Mensal<input type="text" pattern="[0-9]{1,5}" placeholder="Digite o valor da Renda" title="Só é permitido numeros" name="rendaMensal"></label>
                 <div id="vrenda"></div>
 
                 <div class="mostraPassoDois" onclick="proximoPasso()"><img src="../assets/arrow-left.svg" alt="Proximo passo se campo Renda preenchido"></div>
             </fieldset>
             <fieldset class="dois">
-                <h2>Muito Bom, agora precisamos identificar suas principais dividas</h2>
+                <h2>Muito Bom, agora precisamos identificar todas suas principais dividas</h2>
                 <label>Descrição da Divida
                     <input name="tituloDivida"></label>
                 <div id="tdivida"></div>
                 <label>Valor Total da Divida
-                    <input name="valorDivida" type="tel">
+                    <input name="valorDivida" class="vdivida" type="text" pattern="[0-9]{1,5}" placeholder="Digite o valor da divida" title="Só é permitido numeros">
                     <div id="vdivida"></div>
                 </label>
                 <fieldset id="pagarConta" class="">
@@ -36,31 +36,34 @@
                     <label for="parceladoNao">
                         <input type="RADIO" onclick="marcaCheckAVista()" id="parceladoNao" name="contaparcelado" value="false">Não
                     </label>
+                    <div id="porcentPag" class="esconde">
+                        <label>Parcelas da divida
+                            <select onclick="marcaCheckParcelado()" name="porcentagemPag">
+                                <option value="1">1 vez</option>
+                                <option value="2">2 vez</option>
+                                <option value="3">3 vez</option>
+                                <option value="4">4 vezes</option>
+                                <option value="5">5 vezes</option>
+                                <option value="6">5 vezes</option>
+                                <option value="7">7 vezes</option>
+                                <option value="8">8 vezes</option>
+                                <option value="9">9 vezes</option>
+                                <option value="10">10 vezes</option>
+                                <option value="11">11 vezes</option>
+                                <option value="12">12 vezes</option>
+                                <option value="20">20 vezes</option>
+                    
+                            </select>
+                        </label>
+                    </div>
                     <h3>Conta será paga esse mês?</h3>
                     <label for="aVistaSim">
-                        <input type="RADIO" id="aVistaSim" name="contaMes" value="true">Sim
-                        </label>
+                        <input type="RADIO" id="aVistaSim" name="contaMes" onclick="proximoPassoDois()" value="true">Sim
+                    </label>
                     <label for="aVistaNao">
-                        <input type="RADIO" id="aVistaNao" name="contaMes" value="false">Não
+                        <input type="RADIO" id="aVistaNao" name="contaMes" onclick="proximoPassoDois()" value="false">Não
                     </label>
                 </fieldset>
-                <div class="mostraPassoDois" onclick="proximoPassoDois()"><img src="../assets/arrow-left.svg" alt="Proximos Passo "></div>
-            </fieldset>
-            <fieldset id="porcentPag" class="esconde">
-                <label>Porcentagem paga da divida
-                    <select onclick="marcaCheckParcelado()" name="porcentagemPag">
-                        <option value="100">1 vez</option>
-                        <option value="50">2 vez</option>
-                        <option value="33.33">3 vez</option>
-                        <option value="25">4 vezes</option>
-                        <option value="20">5 vezes</option>
-                        <option value="14.28">7 vezes</option>
-                        <option value="10">10 vezes</option>
-                        <option value="8.33">12 vezes</option>
-                        <option value="5">20 vezes</option>
-            
-                    </select>
-                </label>
             </fieldset>
             <button class="treis" type="submit">Adicionar</button>
         </form>
