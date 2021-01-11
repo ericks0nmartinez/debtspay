@@ -12,6 +12,8 @@ var totalMensal = document.querySelector("#valorPago");
 var saldoRestante = document.querySelector("#saldoRestante");
 var saldo = document.querySelector("#saldo");
 
+const validaValor = val => /[0-9]{1,50}$/.test(val);
+
 adicionarDivida.addEventListener("click", function (event) {
     event.preventDefault();
     if (validaDados() == false) {
@@ -38,14 +40,14 @@ function obterInfoForm() {
     };
 }
 function proximoPasso() {
-    obterInfoForm().value = parseFloat(document.querySelector("label input").value.replace(',','.'));
-    if (obterInfoForm().renda != "") {
+    if (obterInfoForm().renda != "" && validaValor(parseFloat(document.querySelector("label input").value.replace(',','.')))) {
         fieldset[1].classList.remove("dois");
         fieldset[0].classList.add("um");
         document.querySelector("#rendaMensal1").classList.remove("quatro");
         saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
     } else {
         if (validaDados() == false) {
+            validaValor(parseFloat(document.querySelector("label input").value.replace(',','.'))) ? document.querySelector("#vrenda").textContent = "" : document.querySelector("#vrenda").textContent = "Só é permitido Numeros";
             return;
         }
     }
@@ -126,6 +128,8 @@ function validaDados() {
             document.querySelector("#vdivida").textContent = "Digite valor Divida";
         valor = false;
     } else {
+        document.querySelector("#vdivida").textContent = "";
+        (validaValor(document.querySelector(".vdivida").value.replace(',','.')) || validaValor(parseFloat(document.querySelector(".vdivida").value.replace(',','.'))) < 0) ? document.querySelector("#vdivida").textContent = "Só é permitido numeros" : document.querySelector("#vdivida").textContent = "" ;
         valor = true;
     }
 
@@ -133,6 +137,7 @@ function validaDados() {
         document.querySelector("#vrenda").textContent = "Digite valor da renda"
         renda = false;
     } else {
+        document.querySelector("#vrenda").textContent = "";
         renda = true;
     }
 
