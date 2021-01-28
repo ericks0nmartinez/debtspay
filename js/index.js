@@ -44,10 +44,10 @@ function proximoPasso() {
         fieldset[1].classList.remove("dois");
         fieldset[0].classList.add("um");
         document.querySelector("#rendaMensal1").classList.remove("quatro");
-        saldo.textContent == "" && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
+        (saldo.textContent == "" || saldo.textContent == 0) && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
     } else {
         if (validaDados() == false) {
-            validaValor(parseFloat(document.querySelector("label input").value.replace(',','.'))) ? document.querySelector("#vrenda").textContent = "" : document.querySelector("#vrenda").textContent = "Só é permitido Numeros";
+            validaValor(parseFloat(document.querySelector("label input").value.replace(',','.'))) ? document.querySelector("#vrenda").textContent = "" : document.querySelector("#vrenda").textContent = "Permitido apenas Numeros";
             return;
         }
     }
@@ -129,7 +129,7 @@ function validaDados() {
         valor = false;
     } else {
         document.querySelector("#vdivida").textContent = "";
-        (validaValor(document.querySelector(".vdivida").value.replace(',','.')) || validaValor(parseFloat(document.querySelector(".vdivida").value.replace(',','.'))) < 0) ? document.querySelector("#vdivida").textContent = "Só é permitido numeros" : document.querySelector("#vdivida").textContent = "" ;
+        (validaValor(document.querySelector(".vdivida").value.replace(',','.')) || validaValor(parseFloat(document.querySelector(".vdivida").value.replace(',','.'))) < 0) ? document.querySelector("#vdivida").textContent = "Permitido apenas numeros" : document.querySelector("#vdivida").textContent = "" ;
         valor = true;
     }
 
@@ -150,7 +150,7 @@ function validaDados() {
     }
 
     if (saldo.textContent == "") {
-        (renda.length != "") ? saldo.textContent = parseFloat(obterInfoForm().renda) : saldo.textContent = 0;
+        (renda.length != "" && obterInfoForm().renda >= 0 ) ? saldo.textContent = parseFloat(obterInfoForm().renda) : saldo.textContent = 0;
     }
 
     if (marcado == 1) {

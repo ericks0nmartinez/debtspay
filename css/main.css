@@ -13,7 +13,7 @@ body {
 #page-home {
     /*background: url("../assets/principal.jpeg") no-repeat;*/
     margin-top: 2vh;
-    height: 40vh;
+    height: 10vh;
     background-position: 60vh bottom;
 }
 
@@ -45,4 +45,10 @@ button {
     border: none;
     padding: 10px 10px 10px 25px;
     border-radius: 5px;
+}
+
+@media(max-width: 769px){
+    fieldset {
+        margin-top: 20%;
+    }
 }
