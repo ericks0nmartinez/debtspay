@@ -44,7 +44,7 @@ function proximoPasso() {
         fieldset[1].classList.remove("dois");
         fieldset[0].classList.add("um");
         document.querySelector("#rendaMensal1").classList.remove("quatro");
-        (saldo.textContent == "" || saldo.textContent == 0) && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
+        (saldo.textContent == "" || saldo.textContent >= 0) && obterInfoForm().renda.length != "" ? saldo.textContent = parseFloat(document.querySelector("label input").value.replace(',','.')) : saldo.textContent = 0;
     } else {
         if (validaDados() == false) {
             validaValor(parseFloat(document.querySelector("label input").value.replace(',','.'))) ? document.querySelector("#vrenda").textContent = "" : document.querySelector("#vrenda").textContent = "Permitido apenas Numeros";
